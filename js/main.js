@@ -1,5 +1,5 @@
 let car;
-let obstacles;
+let myObstacles = [];
 let gameover;
 let points;
 
@@ -24,7 +24,6 @@ function draw() {
   x += W/30 + 10;
   ctx.fillStyle = 'gray';
   ctx.fillRect(x, 0, W-220, H);
-  console.log(W-220);
   //2eme bande grise
   x += W-220 + 10;
   ctx.fillStyle = 'gray';
@@ -53,8 +52,11 @@ function draw() {
   //
   // Iteration #4: obstacles
   //
-
-  obstacles.draw();
+  for (let i = 0;i<myObstacles.length;i++){
+    myObstacles[i].y +=1;
+    myObstacles[i].draw();
+  }
+  
 
   //
   // Iteration #5: collisions
@@ -83,7 +85,10 @@ let raf;
 let frames = 0;
 function animLoop() {
   frames++;
-
+  if (frames % 360 === 0){
+    myObstacles.push(new Obstacle(random()[0], 50, "orange", random()[1], 10)); // w, h, color, x, y
+    console.log(myObstacles);
+  }
   draw();
 
   if (!gameover) {
@@ -96,9 +101,7 @@ function startGame() {
     cancelAnimationFrame(raf);
   }
   car = new Car();  
-  random();
   obstacles = new Obstacle(random()[0], 50, "orange", random()[1], 10);
-
   animLoop();
 }
 

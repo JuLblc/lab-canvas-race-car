@@ -7,7 +7,6 @@ function random(from, to) {
   var myWidth = W - 220 - gap; // Largeur de la route - gap
 
   var posX = Math.floor(Math.random() * (gap - 110 + 1) + 110); // Obtenir posX random entre 110 (départ de la route) et gap sans que l'obstacle dépasse
-  console.log(posX)
   return [myWidth,posX];
 }
 
