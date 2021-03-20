@@ -36,18 +36,18 @@ function draw() {
   let y = 10;
   x = W/2-y;
   ctx.beginPath();
-  ctx.setLineDash([20]);
+  ctx.setLineDash([50]);
+  ctx.strokeStyle = "white";
+  ctx.lineWidth = 20;
   ctx.moveTo(x,y)
-  ctx.lineTo(x, H-10);
-  ctx.stroke();
-  
+  ctx.lineTo(x, H-y);
+  ctx.stroke(); 
 
   //
   // Iteration 2: car drawing
   //
 
-  // TODO
-
+  car.draw();
   //
   // Iteration #4: obstacles
   //
@@ -90,6 +90,8 @@ function startGame() {
   if (raf) {
     cancelAnimationFrame(raf);
   }
+  car = new Car();
+  
 
   // TODO
 
