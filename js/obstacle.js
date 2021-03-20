@@ -1,5 +1,5 @@
 function random(from, to) {
-  // TODO
+  
   var minGap = 200;
   var maxGap = 400;
   var gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
@@ -20,12 +20,29 @@ class Obstacle {
   }
 
   draw() {
-    // TODO
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.w, this.h);
+  }  
+
+  left() {
+    return this.x;
+  }
+  right() {
+    return this.x + this.w;
+  }
+  top() {
+    return this.y;
+  }
+  bottom() {
+    return this.y + this.h;
   }
 
   hits(car) {
-    // TODO
+    return (
+      this.bottom() > car.top() &&
+      this.top() < car.bottom() &&
+      this.right() > car.left() &&
+      this.left() < car.right()
+    );
   }
 }

@@ -1,7 +1,7 @@
 let car;
 let myObstacles = [];
-let gameover;
-let points;
+let gameover = false;
+let points = 0;
 
 const ctx = document.querySelector('canvas').getContext('2d');
 const W = ctx.canvas.width;
@@ -52,24 +52,27 @@ function draw() {
   //
   // Iteration #4: obstacles
   //
-  for (let i = 0;i<myObstacles.length;i++){
+  for (let i = 0;i < myObstacles.length;i++){
     myObstacles[i].y +=1;
-    myObstacles[i].draw();
+    myObstacles[i].draw();    
   }
-  
 
   //
   // Iteration #5: collisions
   //
-
-  // TODO
+  gameover = myObstacles.some(function (obstacle) {
+    return obstacle.hits(car);
+  });
 
   //
   // Iteration #6: points
   //
+  ctx.font = '48px serif';  
+  ctx.fillText(`Score: ${points}`, 150, H-50);
+}
 
-  // TODO
-
+function score(frames){
+  return frames % 100 === 0 ? points += 10 : points;
 }
 
 document.onkeydown = function (e) {
@@ -86,13 +89,16 @@ let frames = 0;
 function animLoop() {
   frames++;
   if (frames % 360 === 0){
-    myObstacles.push(new Obstacle(random()[0], 50, "orange", random()[1], 10)); // w, h, color, x, y
-    console.log(myObstacles);
+    myObstacles.push(new Obstacle(random()[0], 50, "#B02323", random()[1], 0)); // w, h, color, x, y
   }
+
+  score(frames);
   draw();
 
   if (!gameover) {
     raf = requestAnimationFrame(animLoop);
+  } else {
+    document.querySelector('.looser').style.visibility = "visible";
   }
 }
 
@@ -100,13 +106,15 @@ function startGame() {
   if (raf) {
     cancelAnimationFrame(raf);
   }
+  document.querySelector('.looser').style.visibility = "hidden";
   car = new Car();  
-  obstacles = new Obstacle(random()[0], 50, "orange", random()[1], 10);
   animLoop();
 }
 
 document.getElementById("start-button").onclick = function() {
-  startGame();
+  myObstacles = []; //RAZ
+  points = 0;
+  startGame();  
 };
 
 // auto-start

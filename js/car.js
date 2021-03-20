@@ -20,11 +20,27 @@ class Car {
   }
 
   moveLeft() {
-    // TODO
-    this.x -= 10;
+    if (this.x > W/15){ // Empêcher voiture d'aller sur l'herbe
+      this.x -= 10;
+    }    
   }
   moveRight() {
-    // TODO
-    this.x += 10;
+    if (this.x < W-this.w - W/15){ // Empêcher voiture d'aller sur l'herbe
+      console.log(this.x)
+      this.x += 10;
+    }    
+  }
+
+  left() {
+    return this.x;
+  }
+  right() {
+    return this.x + this.w;
+  }
+  top() {
+    return this.y;
+  }
+  bottom() {
+    return this.y + this.h;
   }
 }
