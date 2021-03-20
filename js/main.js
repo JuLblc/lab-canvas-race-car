@@ -24,6 +24,7 @@ function draw() {
   x += W/30 + 10;
   ctx.fillStyle = 'gray';
   ctx.fillRect(x, 0, W-220, H);
+  console.log(W-220);
   //2eme bande grise
   x += W-220 + 10;
   ctx.fillStyle = 'gray';
@@ -48,12 +49,12 @@ function draw() {
   //
 
   car.draw();
-  
+
   //
   // Iteration #4: obstacles
   //
 
-  // TODO
+  obstacles.draw();
 
   //
   // Iteration #5: collisions
@@ -71,8 +72,11 @@ function draw() {
 
 document.onkeydown = function (e) {
   if (!car) return;
-
-  // TODO
+  if (e.key === "ArrowLeft"){
+    car.moveLeft();
+  } else if (e.key === "ArrowRight") {
+    car.moveRight();
+  }
 }
 
 let raf;
@@ -91,10 +95,9 @@ function startGame() {
   if (raf) {
     cancelAnimationFrame(raf);
   }
-  car = new Car();
-  
-
-  // TODO
+  car = new Car();  
+  random();
+  obstacles = new Obstacle(random()[0], 50, "orange", random()[1], 10);
 
   animLoop();
 }
