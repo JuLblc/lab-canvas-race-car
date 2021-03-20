@@ -34,13 +34,13 @@ function draw() {
   ctx.fillRect(x, 0, W/15, H);
   // Rectangle ligne séparation route
   let y = 10;
-  x = W/2-y;
+  x = W/2;
   ctx.beginPath();
   ctx.setLineDash([50]);
   ctx.strokeStyle = "white";
   ctx.lineWidth = 20;
   ctx.moveTo(x,y)
-  ctx.lineTo(x, H-y);
+  ctx.lineTo(x, H);
   ctx.stroke(); 
 
   //
@@ -48,6 +48,7 @@ function draw() {
   //
 
   car.draw();
+  
   //
   // Iteration #4: obstacles
   //

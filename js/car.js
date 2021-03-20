@@ -5,15 +5,13 @@ class Car {
       this.img = img;
 
       const imgRatio = img.naturalWidth/img.naturalHeight;
-      this.draw();
-      
+      this.draw();      
     }
     img.src = "images/car.png";
-    this.x = 50;
-    this.y = 50;
     this.w = 100;
     this.h = 150;
-    // console.log(this.h)
+    this.x = W/2 - this.w/2;
+    this.y = H - this.h * 2;
   }
 
   draw() {
