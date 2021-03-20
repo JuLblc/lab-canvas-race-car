@@ -11,8 +11,19 @@ function draw() {
   //
   // Iteration 1: road drawing
   //
-
-  // TODO
+  let x = 0;
+  ctx.clearRect(0,0,W,H);
+  //1ere bande verte
+  ctx.fillStyle = 'green';
+  ctx.fillRect(x, 0, W/15, H);
+  //1ere bande gris
+  x += W/15;
+  ctx.fillStyle = 'gray';
+  ctx.fillRect(x, 0, W/30, H);
+  // Route principale
+  x += W/30 + 10;
+  ctx.fillStyle = 'gray';
+  ctx.fillRect(x, 0, W-220, H);
 
   //
   // Iteration 2: car drawing
