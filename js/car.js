@@ -5,16 +5,18 @@ class Car {
       this.img = img;
 
       const imgRatio = img.naturalWidth/img.naturalHeight;
+
+      this.w = 100;
+      this.h = this.w/imgRatio;
+      this.x = W/2 - this.w/2;
+      this.y = H - this.h * 2;
+
       this.draw();      
     }
-    img.src = "images/car.png";
-    this.w = 100;
-    this.h = 150;
-    this.x = W/2 - this.w/2;
-    this.y = H - this.h * 2;
+    img.src = "images/car.png";   
   }
 
-  draw() {
+  draw() {    
     if (!this.img) return; // if `this.img` is not loaded yet => don't draw
     ctx.drawImage(this.img, this.x,this.y, this.w, this.h);
   }
